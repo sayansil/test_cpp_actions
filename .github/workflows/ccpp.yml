@@ -28,8 +28,6 @@ jobs:
         cd tbb
         git checkout 2019_U9
         make -j `nproc`
-        TBB="$(pwd)"
-        TBB_RELEASE="${TBB}/build/linux_intel64_gcc_cc7.4.0_libc2.27_kernel4.15.0_release"
         cd ../Cpp
         mkdir build
         cd build

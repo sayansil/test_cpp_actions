@@ -131,8 +131,7 @@ void God::happyNewYear()
     int dead = 0;
 
     // Vector for [ (Animal, death_factor) ]
-    std::vector<std::pair<Animal, double>>
-        animals_vec;
+    std::vector<std::pair<Animal, double>> animals_vec;
 
     for(auto& animal : animals)
     {
@@ -152,7 +151,10 @@ void God::happyNewYear()
     // Mark the animals in animal_vec for death
 
     int tmp_i = 0;
-    std::for_each(std::execution::par, animals_vec.begin(), animals_vec.end(), [&tmp_i, &animals_vec](std::pair<Animal, double> &x) {
+    std::for_each(std::execution::par,
+        animals_vec.begin(),
+        animals_vec.end(),
+        [&tmp_i, &animals_vec](std::pair<Animal, double> &x) {
         x.second = helper::weighted_prob(
             // killerFunction(x.first.get_fitness(), animals_vec.size())
             killerFunction(tmp_i++, animals_vec.size())

@@ -21,6 +21,9 @@ jobs:
         sudo apt-get update
     - name: build-tbb
       run: |
+        sudo cp /etc/apt/sources.list /etc/apt/sources.list~
+        sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
+        sudo apt-get update
         sudo apt-get build-dep libtbb-dev
         git clone https://github.com/intel/tbb
         cd tbb

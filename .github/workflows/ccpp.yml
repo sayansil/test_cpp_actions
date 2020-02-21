@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: prepare
+    - name: configure
       run: |
         sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 50
         sudo update-alternatives --set gcc "/usr/bin/gcc-9"
@@ -24,8 +24,6 @@ jobs:
         sudo apt-get build-dep libtbb-dev
         TBB="$(pwd)"
         TBB_RELEASE="${TBB}/build/linux_intel64_gcc_cc7.4.0_libc2.27_kernel4.15.0_release"
-    - name: configure
-      run: |
         git clone https://github.com/intel/tbb
         cd tbb
         git checkout 2019_U9

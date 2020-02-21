@@ -18,13 +18,12 @@ jobs:
         sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 50
         sudo update-alternatives --set g++ "/usr/bin/g++-9"
         sudo apt-get install libsqlite3-dev
-        sudo apt-get update
-    - name: configure
-      run: |
         sudo cp /etc/apt/sources.list /etc/apt/sources.list~
         sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
         sudo apt-get update
         sudo apt-get build-dep libtbb-dev
+    - name: configure
+      run: |
         git clone https://github.com/intel/tbb
         cd tbb
         git checkout 2019_U9

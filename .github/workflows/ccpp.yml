@@ -20,6 +20,7 @@ jobs:
         echo "deb http://cz.archive.ubuntu.com/ubuntu eoan main universe" | sudo tee -a  /etc/apt/sources.list
         sudo apt update
         sudo apt install libtbb-dev
+        sudo apt install libsqlite3-dev
     - name: configure
       run: |
         cd Cpp

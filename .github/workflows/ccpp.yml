@@ -14,7 +14,7 @@ jobs:
     - name: configure
       run: cd Cpp && mkdir build && cd build && cmake ..
     - name: build
-      run: make
+      run: cd Cpp/build && make
   
   build-windows:
     runs-on: windows-latest

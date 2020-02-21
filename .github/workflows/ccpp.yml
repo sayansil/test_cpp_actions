@@ -17,6 +17,7 @@ jobs:
         sudo update-alternatives --set gcc "/usr/bin/gcc-9"
         sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 50
         sudo update-alternatives --set g++ "/usr/bin/g++-9"
+<<<<<<< HEAD
         sudo apt-get install libsqlite3-dev
         sudo apt-get update
     - name: build-tbb
@@ -28,6 +29,13 @@ jobs:
         make -j `nproc`
         TBB="$(pwd)"
         TBB_RELEASE="${TBB}/build/linux_intel64_gcc_cc7.4.0_libc2.27_kernel4.15.0_release"
+=======
+        sudo apt install libsqlite3-dev
+        echo "deb http://cz.archive.ubuntu.com/ubuntu focal main universe" | sudo tee -a  /etc/apt/sources.list
+        sudo apt update
+        sudo apt install libtbb-dev
+        dpkg -L libtbb-dev
+>>>>>>> 3b9ff49303369a60fe6091698338d28b0f9a419d
     - name: configure
       run: |
         cd Cpp

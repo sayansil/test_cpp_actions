@@ -11,23 +11,23 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: configure
+    - name: prepare
       run: |
         sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 50
         sudo update-alternatives --set gcc "/usr/bin/gcc-9"
         sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 50
         sudo update-alternatives --set g++ "/usr/bin/g++-9"
+
         sudo apt-get install libsqlite3-dev
-        sudo cp /etc/apt/sources.list /etc/apt/sources.list~
-        sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
+
         sudo apt-get update
-        sudo apt-get build-dep libtbb-dev
-        TBB="$(pwd)"
-        TBB_RELEASE="${TBB}/build/linux_intel64_gcc_cc7.4.0_libc2.27_kernel4.15.0_release"
-        git clone https://github.com/intel/tbb
+        git clone https://github.com/wjakob/tbb
         cd tbb
-        git checkout 2019_U9
-        make -j `nproc`
+        cmake -D CMAKE_INSTALL_PREFIX=/usr .
+        make -j $(nproc)
+        sudo make install
+    - name: config
+      run: |
         cd ../Cpp
         mkdir build
         cd build

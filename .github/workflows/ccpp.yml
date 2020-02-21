@@ -28,7 +28,7 @@ jobs:
         sudo make install
     - name: config
       run: |
-        cd ../Cpp
+        cd Cpp
         mkdir build
         cd build
         cmake ..

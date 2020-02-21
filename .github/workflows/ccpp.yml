@@ -11,18 +11,23 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
+    - name: prepare
+      run: |
+        sudo add-apt-repository ppa:jonathonf/gcc-9.0
+        sudo apt-get update
+        sudo apt-get install gcc-9 g++9
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9.0 50
+        sudo update-alternatives --set gcc "/usr/bin/gcc-9.0"
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9.0 50
+        sudo update-alternatives --set g++ "/usr/bin/g++-9.0"
     - name: configure
-      run: cd Cpp && mkdir build && cd build && cmake ..
+      run: |
+        cd Cpp
+        mkdir build
+        cd build
+        cmake ..
     - name: build
-      run: cd Cpp/build && make
-  
-  build-windows:
-    runs-on: windows-latest
-    
-    steps:
-    - uses: actions/checkout@v2
-    - name: configure
-      run: mkdir build && cd build && cmake ..
-    - name: build
-      run: make
+      run: |
+        cd Cpp/build
+        make
   

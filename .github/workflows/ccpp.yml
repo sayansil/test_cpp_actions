@@ -23,7 +23,7 @@ jobs:
       run: |
         echo "deb http://cz.archive.ubuntu.com/ubuntu focal main universe" | sudo tee -a  /etc/apt/sources.list
         sudo apt update
-        sudo apt-get build-dep libtbb-dev
+        sudo apt-get libtbb-dev
         git clone https://github.com/intel/tbb
         cd tbb
         git checkout 2019_U9

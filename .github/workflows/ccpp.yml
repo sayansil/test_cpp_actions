@@ -22,6 +22,8 @@ jobs:
         sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
         sudo apt-get update
         sudo apt-get build-dep libtbb-dev
+        TBB="$(pwd)"
+        TBB_RELEASE="${TBB}/build/linux_intel64_gcc_cc7.4.0_libc2.27_kernel4.15.0_release"
     - name: configure
       run: |
         git clone https://github.com/intel/tbb

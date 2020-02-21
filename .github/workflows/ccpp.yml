@@ -19,7 +19,7 @@ jobs:
         sudo update-alternatives --set g++ "/usr/bin/g++-9"
         sudo apt-get install libsqlite3-dev
         sudo apt-get update
-    - name: build-tbb
+    - name: configure
       run: |
         sudo cp /etc/apt/sources.list /etc/apt/sources.list~
         sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
@@ -31,9 +31,7 @@ jobs:
         make -j `nproc`
         TBB="$(pwd)"
         TBB_RELEASE="${TBB}/build/linux_intel64_gcc_cc7.4.0_libc2.27_kernel4.15.0_release"
-    - name: configure
-      run: |
-        cd Cpp
+        cd ../Cpp
         mkdir build
         cd build
         cmake ..

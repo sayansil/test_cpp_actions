@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(Cpp)
 
-set(CMAKE_CXX_FLAGS "-std=c++17 -O3 -march=native -lm -Wall -Wextra -pedantic -I '${TBB}/include' -Wl,-rpath,'${TBB_RELEASE}' -L '${TBB_RELEASE}' -ltbb")
+set(CMAKE_CXX_FLAGS "-std=c++17 -O3 -march=native -lm -I $TBB/include -Wl,-rpath,$TBB_RELEASE -L $TBB_RELEASE -ltbb")
 
 set(ECOSYSTEM_HEADERS
     include/nlohmann/json.hpp

@@ -141,7 +141,7 @@ void God::happyNewYear()
 
     // Sort animal_vec by death factor
 
-    std::sort(std::execution::par,
+    __gnu_parallel::sort(
         animals_vec.begin(),
         animals_vec.end(),
         [](const std::pair<Animal, double>& x, const std::pair<Animal, double>& y){
@@ -151,15 +151,14 @@ void God::happyNewYear()
     // Mark the animals in animal_vec for death
 
     int tmp_i = 0;
-    std::for_each(std::execution::par,
+    __gnu_parallel::for_each(
         animals_vec.begin(),
         animals_vec.end(),
         [&tmp_i, &animals_vec](std::pair<Animal, double> &x) {
-        x.second = helper::weighted_prob(
-            // killerFunction(x.first.get_fitness(), animals_vec.size())
-            killerFunction(tmp_i++, animals_vec.size())
-        );
-    });
+            x.second = helper::weighted_prob(
+                // killerFunction(x.first.get_fitness(), animals_vec.size())
+                killerFunction(tmp_i++, animals_vec.size()));
+        });
 
     // Remove the above marked animals from the f****** universe
 
@@ -247,7 +246,7 @@ void God::happyNewYear()
 
     // todo: parallel v sequential performance test
 
-    std::for_each(std::execution::par, animals.begin(), animals.end(), [](auto& x){
+    __gnu_parallel::for_each(animals.begin(), animals.end(), [](auto &x) {
         x.second.increment_age();
     });
 }
@@ -260,7 +259,7 @@ std::vector<Animal> God::animalSort(bool (*comp)(const Animal &, const Animal &)
         animal_vec.push_back(i.second);
     }
     animal_vec.shrink_to_fit();
-    std::sort(animal_vec.begin(), animal_vec.end(), comp);
+    __gnu_parallel::sort(animal_vec.begin(), animal_vec.end(), comp);
     return animal_vec;
 }
 
@@ -273,7 +272,7 @@ std::unordered_map<std::string, std::vector<Animal>> God::animalSortByKind(bool 
     }
     for (auto &i : animal_map)
     {
-        std::sort(i.second.begin(), i.second.end(), comp);
+        __gnu_parallel::sort(i.second.begin(), i.second.end(), comp);
     }
     return animal_map;
 }

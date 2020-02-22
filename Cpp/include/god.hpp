@@ -1,8 +1,7 @@
 #ifndef GOD_HPP
 #define GOD_HPP
 
-#include <algorithm>
-#include <execution>
+#include <parallel/algorithm>
 #include <iostream>
 #include <unordered_map>
 #include <utility>

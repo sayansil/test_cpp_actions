@@ -19,13 +19,7 @@ jobs:
         sudo update-alternatives --set g++ "/usr/bin/g++-9"
 
         sudo apt-get install libsqlite3-dev
-
         sudo apt-get update
-        git clone https://github.com/wjakob/tbb
-        cd tbb
-        cmake -D CMAKE_INSTALL_PREFIX=/usr .
-        make -j $(nproc)
-        sudo make install
     - name: config
       run: |
         cd Cpp

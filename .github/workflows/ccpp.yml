@@ -6,21 +6,12 @@ on:
       - master
 
 jobs:
-  build-linux:
-    runs-on: ubuntu-latest
+  build-windows:
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: prepare
-      run: |
-        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 50
-        sudo update-alternatives --set gcc "/usr/bin/gcc-9"
-        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 50
-        sudo update-alternatives --set g++ "/usr/bin/g++-9"
-
-        sudo apt-get install libsqlite3-dev
-        sudo apt-get update
-    - name: config
+    - name: configure
       run: |
         cd Cpp
         mkdir build
@@ -30,4 +21,3 @@ jobs:
       run: |
         cd Cpp/build
         make
-

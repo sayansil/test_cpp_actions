@@ -11,12 +11,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: configure
       run: |
         cd Cpp
         mkdir build
         cd build
-        cmake ..
+        cmake cmake -G "Unix Makefiles" ..
+
     - name: build
       run: |
         cd Cpp/build

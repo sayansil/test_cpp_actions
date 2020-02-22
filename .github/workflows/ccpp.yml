@@ -16,8 +16,8 @@ jobs:
       run: |
         git clone https://github.com/alex85k/sqlite3-cmake
         cd sqlite3-cmake
-        cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=d:/libs
-        nmake install
+        cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/student/libs
+        make install
 
     - name: configure
       run: |

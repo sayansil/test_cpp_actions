@@ -12,6 +12,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: prepare
+    - run: |
+        curl https://www.sqlite.org/2020/sqlite-amalgamation-3310100.zip
+        tar -xf sqlite-amalgamation-3310100.zip
+        cd sqlite-amalgamation-3310100
+        gcc -shared sqlite3.c -o sqlite3.dll
+
     - name: configure
       run: |
         cd Cpp

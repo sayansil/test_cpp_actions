@@ -14,9 +14,7 @@ jobs:
 
     - name: prepare
       run: |
-        git clone https://github.com/sayansil/sqlite-amalgamation-3310100
-        cd sqlite-amalgamation-3310100
-        gcc -shared sqlite3.c -o sqlite3.dll
+        choco install sqlite
 
     - name: configure
       run: |

@@ -14,7 +14,9 @@ jobs:
 
     - name: prepare
       run: |
-        choco install sqlite
+        git clone https://github.com/alex85k/sqlite3-cmake
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/student/libs
+        make install
 
     - name: configure
       run: |

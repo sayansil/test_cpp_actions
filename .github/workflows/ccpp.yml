@@ -33,3 +33,9 @@ jobs:
       run: |
         cd Cpp/build
         make
+
+    - name: unit-test
+      run: |
+        cd Cpp/build
+        ./setup
+        ./rt_unit_tests

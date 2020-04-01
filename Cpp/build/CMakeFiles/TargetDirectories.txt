@@ -1,0 +1,8 @@
+/run/media/sayan/Data/Programmer/Ecosystem/Cpp/build/CMakeFiles/edit_cache.dir
+/run/media/sayan/Data/Programmer/Ecosystem/Cpp/build/CMakeFiles/ecosystem.dir
+/run/media/sayan/Data/Programmer/Ecosystem/Cpp/build/CMakeFiles/setup.dir
+/run/media/sayan/Data/Programmer/Ecosystem/Cpp/build/CMakeFiles/rebuild_cache.dir
+/run/media/sayan/Data/Programmer/Ecosystem/Cpp/build/CMakeFiles/rt_test3.dir
+/run/media/sayan/Data/Programmer/Ecosystem/Cpp/build/CMakeFiles/rt_test2.dir
+/run/media/sayan/Data/Programmer/Ecosystem/Cpp/build/CMakeFiles/rt_generateReport.dir
+/run/media/sayan/Data/Programmer/Ecosystem/Cpp/build/CMakeFiles/rt_test1.dir

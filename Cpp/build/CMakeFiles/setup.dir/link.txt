@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++17 -O3 -march=native -lm -ltbb   CMakeFiles/setup.dir/setup/setup.cpp.o  -o setup  -lsqlite3 

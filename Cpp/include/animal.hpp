@@ -1,45 +1,18 @@
 #ifndef ANIMAL_HPP
 #define ANIMAL_HPP
 
-#include <climits>
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <map>
-#include <math.h>
-#include <variant>
-
-#include <EcosystemTypes.hpp>
+#include <ecosystem_types.hpp>
 #include <helper.hpp>
 #include <nlohmann/json.hpp>
+#include <organism.hpp>
 
-#define MALE 0
-#define FEMALE 1
-
-class Animal
+class Animal : public Organism<Animal>
 {
 public:
 
     /***************************************
      *         Fixed for a species         *
-    ****************************************/
-
-    std::string kind;
-    CHROMOSOME_MAP_TYPE chromosome_structure;
-    unsigned int chromosome_number;
-
-    // Attributes related to Mating
-    double conceiving_probability;
-    unsigned int mating_age_start;
-    unsigned int mating_age_end;
-    unsigned int max_age;
-    double mutation_probability;
-    double offsprings_factor;
-
-    // Attributes related to death
-    double age_on_death;
-    double fitness_on_death;
-    double age_fitness_on_death_ratio;
+     ***************************************/
 
     // Height dependance factors
     double height_on_speed;
@@ -80,29 +53,13 @@ public:
     double theoretical_maximum_weight_multiplier;
 
     // Miscellaneous attributes
+    double vision_radius;
     double sleep_restore_factor;
 
-    /******************************************************
-     *  Fixed for the organism throughout their lifetime  *
-    *******************************************************/
-
-    // Chromosome (binary string)
-    std::string chromosome;
-
-    // Miscellaneous attributes
-    unsigned int gender; // (0 - male, 1 - female)
-    unsigned int generation;
-    double immunity;
-    std::string name;
 
     /*************************************************************
      *  Changes slowly - once every year (during mating season)  *
-    **************************************************************/
-
-    // Physical changes (in appearance)
-    unsigned int age;
-    double height;
-    double weight;
+     *************************************************************/
 
     // Stats affected by age
     double max_appetite_at_age;
@@ -110,18 +67,10 @@ public:
     double max_stamina_at_age;
     double max_vitality_at_age;
 
-    // Fitness based on yearly changing stats
-    double static_fitness;
-
-    // Death factor determined by present age and fitness
-    double death_factor;
-
-    // Miscellaneous attributes
-    double vision_radius; // TODO
 
     /**************************************
      *  Changes dynamically every moment  *
-    ***************************************/
+     **************************************/
 
     // Physical attributes
     double appetite;
@@ -129,79 +78,71 @@ public:
     double stamina;
     double vitality;
 
-    // Position
-    unsigned int X;
-    unsigned int Y;
-
-    // Dynamic fitness value
-    double dynamic_fitness;
-
     // Miscellanous attributes
     bool asleep;
 
+
     /******************************
      *  Constructor / Destructor  *
-    *******************************/
+     ******************************/
 
     Animal() = default;
     Animal(
-        const std::string& kind,
-        const std::string& chromosome = "",
-        const unsigned int& generation = 1,
-        const std::string& name = "",
-        const std::pair<unsigned int, unsigned int>& XY = helper::random_location());
+        const std::string &kind,
+        const unsigned int &age = 0,
+        const bool &monitor_in_simulation = false,
+        const std::string &chromosome = "",
+        const unsigned int &generation = 1,
+        const std::string &name = "",
+        const std::pair<unsigned int, unsigned int> &XY = helper::random_location(),
+        const nlohmann::json &species_constants = nlohmann::json());
+    ~Animal();
 
-    /*****************
-     *  Get methods  *
-    ******************/
 
-    // Get base stats
+    /***********************
+     *  Virtual functions  *
+     ***********************/
+
+    std::shared_ptr<Entity> clone() const;
+    std::shared_ptr<Entity> clone(
+                const std::string &kind,
+                const unsigned int &age = 0,
+                const bool &monitor_in_simulation = false,
+                const std::string &chromosome = "",
+                const unsigned int &generation = 1,
+                const std::string &name = "",
+                const std::pair<unsigned int, unsigned int> &XY = helper::random_location(),
+                const nlohmann::json &species_constants = nlohmann::json()
+            ) const;
     double get_base_appetite() const;
     double get_base_height() const;
     double get_base_speed() const;
     double get_base_stamina() const;
     double get_base_vitality() const;
     double get_base_weight() const;
-
-    // Get multipliers
+    double get_immunity_from_chromosome() const;
+    unsigned int get_gender_from_chromosome() const;
     double get_height_multiplier() const;
     double get_speed_multiplier() const;
     double get_stamina_multiplier() const;
     double get_vitality_multiplier() const;
     double get_weight_multiplier() const;
-
-    // Get max stats
     double get_max_height() const;
     double get_max_weight() const;
-
-    // Get miscellaneous stats
-    double get_die_of_age_factor() const;
-    double get_die_of_fitness_factor() const;
-    double get_fitness() const;
-    double get_immunity() const;
-    unsigned int get_gender() const;
-
-    /********************
-     *  Update methods  *
-    *********************/
-
-    // Generate fitness values
+    void init_from_json(const nlohmann::json &);
     void evaluate_dynamic_fitness();
     void evaluate_static_fitness();
-
-    // Miscellaneous methods
     void eat(const double &);
     void generate_death_factor();
     void increment_age();
     void sleep(const double &);
-
-    // Update stats
     void decrement_stamina_by(const double &);
     void decrement_vitality_by(const double &);
     void increment_stamina_by(const double &);
     void increment_vitality_by(const double&);
-
-    STAT_TYPE get_stat(const std::string &) const;
+    STAT get_stat(const std::string &) const;
+    std::string get_kingdom() const;
+    bool is_normal_child() const;
 };
 
 #endif // ANIMAL_HPP

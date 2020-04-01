@@ -7,24 +7,27 @@ on:
 
 jobs:
   build-windows:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
 
     - name: prepare
       run: |
-        git clone https://github.com/alex85k/sqlite3-cmake
-        cd sqlite3-cmake
-        cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/student/libs
-        make install
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 50
+        sudo update-alternatives --set gcc "/usr/bin/gcc-9"
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 50
+        sudo update-alternatives --set g++ "/usr/bin/g++-9"
+        sudo apt-get install libsqlite3-dev
+        sudo apt-get install libzmq-dev
+        sudo apt-get update
 
     - name: configure
       run: |
         cd Cpp
         mkdir build
         cd build
-        cmake -G "Unix Makefiles" ..
+        cmake ..
 
     - name: build
       run: |

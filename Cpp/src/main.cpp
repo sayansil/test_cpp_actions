@@ -1,13 +1,26 @@
+#include <god.hpp>
 #include <iostream>
-#include <helper.hpp>
+#include <memory>
+#include <stat_fetcher.hpp>
 
 int main()
 {
-    const double mutationChance = 0.5;
-    std::string child_chromosome = "1010101010101010";
-    std::cout << child_chromosome << '\n';
-    for(auto& bit : child_chromosome)
-        if(helper::weighted_prob(mutationChance))
-            bit = (bit == '1')?'0':'1';
-    std::cout << child_chromosome << '\n';
+    unsigned int initial_organism_count_m = 500;
+    unsigned int initial_organism_count_nm = 500;
+
+    God allah(true);
+    allah.monitor_offsprings = true;
+
+    allah.reset_species("plant/bamboo");
+
+    while (initial_organism_count_m--)
+    {
+        allah.spawn_organism(std::make_shared<Plant>("bamboo", 10, true));
+    }
+    while (initial_organism_count_nm--)
+    {
+        allah.spawn_organism(std::make_shared<Plant>("bamboo", 10, false));
+    }
+
+    allah.start_listening_for_simulation();
 }

@@ -107,6 +107,8 @@ bool test_statsdb()
         DatabaseManager* db = new DatabaseManager();
         auto rows = db->read_all_rows_stats("plant/bamboo");
 
+        std::cout << rows.size() << ", " << years_to_simulate << '\n';
+
         if (rows.size() == years_to_simulate)
         {
             flag = true;

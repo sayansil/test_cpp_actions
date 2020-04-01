@@ -107,8 +107,6 @@ bool test_statsdb()
         DatabaseManager* db = new DatabaseManager();
         auto rows = db->read_all_rows_stats("plant/bamboo");
 
-        std::cout << rows.size() << ", " << years_to_simulate << '\n';
-
         if (rows.size() == years_to_simulate)
         {
             flag = true;
@@ -136,11 +134,11 @@ int main()
     int total = 3;
     int passed = 0;
 
-    // if (test_nodb())
-    //     passed++;
+    if (test_nodb())
+        passed++;
 
-    // if (test_masterdb())
-    //     passed++;
+    if (test_masterdb())
+        passed++;
 
     if (test_statsdb())
         passed++;

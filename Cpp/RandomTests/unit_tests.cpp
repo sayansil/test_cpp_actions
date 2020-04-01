@@ -109,7 +109,7 @@ bool test_statsdb()
 
         std::cout << rows.size() << ", " << years_to_simulate << '\n';
         for(auto row : rows)
-            std::cout << "yr: " << row[0] << "\n"
+            std::cout << "yr: " << row[0] << "\n";
 
         if (rows.size() == years_to_simulate)
         {

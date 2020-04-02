@@ -108,8 +108,10 @@ bool test_statsdb()
         auto rows = db->read_all_rows_stats("plant/bamboo");
 
         std::cout << rows.size() << ", " << years_to_simulate << '\n';
-        for(auto row : rows)
-            std::cout << "yr: " << row[0] << "\n";
+        for(std::vector<STAT> row : rows){
+            helper::display_stat(row[0]);
+            std::cout << " year\n";
+        }
 
         if (rows.size() == years_to_simulate)
         {

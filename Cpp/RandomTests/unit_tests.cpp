@@ -107,7 +107,6 @@ bool test_statsdb()
         DatabaseManager* db = new DatabaseManager();
         auto rows = db->read_all_rows_stats("plant/bamboo");
 
-        std::cout << rows.size() << ", " << years_to_simulate << '\n';
         for(std::vector<STAT> row : rows){
             helper::display_stat(row[0]);
             std::cout << " year\n";
@@ -120,7 +119,7 @@ bool test_statsdb()
         else
         {
             std::cout << "test_statsdb failed." << '\n';
-            std::cout << "Did not write to STATS table." << '\n';
+            std::cout << "Fetched " << rows.size() << " stats from STATS table." << '\n';
             flag = false;
         }
         delete db;

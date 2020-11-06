@@ -38,12 +38,12 @@ jobs:
           cd win
           mkdir build
           cd build
-          cmake -G "MinGW Makefiles" ..
+          cmake -G "Ninja" ..
           
       - name: build
         run: |
           cd win/build
-          mingw32-make.exe
+          dir
           
       - name: run
         run: |

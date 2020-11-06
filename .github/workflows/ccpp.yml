@@ -40,7 +40,6 @@ jobs:
           mkdir build
           cd build
           cmake -G "Ninja" ..
-          type CMakeCache.txt
           
       - name: build
         run: |

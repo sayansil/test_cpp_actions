@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-linux:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
 
@@ -22,6 +22,10 @@ jobs:
       run: |
         cd win/build
         cmake --build . -- -j $(nproc)
+        
+    - name: run
+      run: |
+        ls
         
   build-win:
     runs-on: windows-latest
@@ -39,5 +43,9 @@ jobs:
         run: |
           cd win/build
           mingw32-make.exe
+          
+      - name: run
+        run: |
+          dir
         
         

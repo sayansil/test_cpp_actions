@@ -13,8 +13,8 @@ set(MAIN_SOURCES
     )
 
 function(build_main)
-    add_executable(main ${ECOSYSTEM_SOURCES} ${ECOSYSTEM_HEADERS})
-    target_include_directories(ecosystem PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+    add_executable(main ${MAIN_SOURCES} ${MAIN_HEADERS})
+    target_include_directories(main PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
     target_link_libraries(main)
 endfunction()
 

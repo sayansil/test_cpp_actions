@@ -26,7 +26,7 @@ jobs:
     - name: run
       run: |
         cd win/build
-        ls
+        ./coolok
         
   build-win:
     runs-on: windows-latest
@@ -48,6 +48,6 @@ jobs:
       - name: run
         run: |
           cd win/build
-          dir
+          coolok.exe
         
         

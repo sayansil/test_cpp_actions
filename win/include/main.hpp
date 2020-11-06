@@ -7,6 +7,6 @@
 class Main {
 public:
     void doSomething();
-}
+};
 
 #endif // MAIN_HPP

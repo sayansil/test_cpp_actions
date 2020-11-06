@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-calss Main {
+class Main {
 public:
     void doSomething();
 }

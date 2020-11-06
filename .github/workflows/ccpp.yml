@@ -34,5 +34,10 @@ jobs:
           mkdir build
           cd build
           cmake -G "MinGW Makefiles" ..
+          
+      - name: build
+        run: |
+          cd win/build
+          mingw32-make.exe
         
         

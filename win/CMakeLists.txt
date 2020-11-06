@@ -18,4 +18,4 @@ function(build_cool)
     target_link_libraries(coolok)
 endfunction()
 
-build_main()
+build_cool()

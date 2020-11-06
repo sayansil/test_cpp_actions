@@ -22,3 +22,17 @@ jobs:
       run: |
         cd win/build
         cmake --build . -- -j $(nproc)
+        
+  build-win:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: configure-build
+        run: |
+          cd win
+          mkdir build
+          cd build
+          cmake -G "MinGW Makefiles" ..
+        
+        

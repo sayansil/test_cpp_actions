@@ -44,7 +44,7 @@ jobs:
       - name: build
         run: |
           cd win/build
-          dir
+          ninja
           
       - name: run
         run: |

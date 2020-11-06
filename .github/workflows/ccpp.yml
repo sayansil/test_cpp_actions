@@ -48,7 +48,6 @@ jobs:
       - name: run
         run: |
           cd win/build
-          dir
           . .\coolok.exe
         
         

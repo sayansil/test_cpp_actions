@@ -46,7 +46,7 @@ jobs:
       - name: build
         run: |
           cd win/build
-          ninja
+          cmake --build .
           
       - name: run
         run: |

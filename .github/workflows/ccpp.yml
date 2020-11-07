@@ -50,7 +50,7 @@ jobs:
           
       - name: run
         run: |
-          cd win/build
+          cd win/build/Debug
           . .\coolok.exe
         
         

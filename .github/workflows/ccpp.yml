@@ -41,7 +41,7 @@ jobs:
           cd "D:\a\test_cpp_actions\test_cpp_actions\win"
           mkdir build
           cd build
-          cmake -G "Ninja" -DCMAKE_C_COMPILER="C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.27.29110\\bin\\Hostx64\\x64\\cl.exe" -DCMAKE_CXX_COMPILER="C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.27.29110\\bin\\Hostx64\\x64\\cl.exe" ..
+          cmake -G "Visual Studio 16 2019" -DCMAKE_C_COMPILER="C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.27.29110\\bin\\Hostx64\\x64\\cl.exe" -DCMAKE_CXX_COMPILER="C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Tools\\MSVC\\14.27.29110\\bin\\Hostx64\\x64\\cl.exe" ..
           
       - name: build
         run: |
